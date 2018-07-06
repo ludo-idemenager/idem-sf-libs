@@ -1,0 +1,16 @@
+{
+    "name": "idemenager/idem-sf-libs",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ludovic Auberger",
+            "email": "ludovic.auberger@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-package-install": [
+            "@php installer.php"
+        ]
+    }
+}
