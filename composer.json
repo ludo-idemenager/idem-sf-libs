@@ -9,7 +9,7 @@
     ],
     "minimum-stability": "dev",
     "scripts": {
-        "post-package-install": [
+        "post-install-cmd": [
             "@php installer.php"
         ]
     }
