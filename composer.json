@@ -4,13 +4,9 @@
     "authors": [
         {
             "name": "Ludovic Auberger",
-            "email": "ludovic.auberger@gmail.com"
+            "email": "ludovic.auberger@i-demenager.com"
         }
     ],
-    "minimum-stability": "dev",
-    "scripts": {
-        "post-install-cmd": [
-            "@php installer.php"
-        ]
-    }
+    "description": "Contains the backend libs to be installed in the /lib folder",
+    "minimum-stability": "dev"
 }
