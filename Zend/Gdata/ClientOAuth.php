@@ -78,10 +78,10 @@ class Zend_Gdata_ClientOAuth
      * @throws Zend_Gdata_App_CaptchaRequiredException
      * @return Zend_Gdata_HttpClient
      */
-    public static function getHttpClient($accessToken, $client = null,
+    public static function getHttpClient($accessTokenArray, $client = null,
         $source = self::DEFAULT_SOURCE)
     {
-        if (!$accessToken) {
+        if (!$accessTokenArray) {
             require_once 'Zend/Gdata/App/AuthException.php';
             throw new Zend_Gdata_App_AuthException(
                    'Please set your Google access token before trying to ' .
@@ -98,13 +98,16 @@ class Zend_Gdata_ClientOAuth
                     'Client is not an instance of Zend_Http_Client.');
         }
 
-        $decoded = json_decode($accessToken, true);
-        if ($decoded == NULL) {
-        	require_once 'Zend/Gdata/App/HttpException.php';
-            throw new Zend_Gdata_App_HttpException(
-                    'Impossible de décoder le access token.');
+        if (!is_array($accessTokenArray)) {
+            $decoded = json_decode($accessTokenArray, true);
+            if ($decoded == NULL) {
+                require_once 'Zend/Gdata/App/HttpException.php';
+                throw new Zend_Gdata_App_HttpException(
+                        'Impossible de décoder le access token.');
+            }
+            $accessTokenArray = $decoded;
         }
-		$decodedAccessToken = $decoded["access_token"];
+        $decodedAccessToken = $accessTokenArray["access_token"];
         
         $client->setOAuthAccessToken($decodedAccessToken);
         $useragent = $source . ' Zend_Framework_Gdata/' . Zend_Version::VERSION;
@@ -119,4 +122,3 @@ class Zend_Gdata_ClientOAuth
     }
 
 }
-
