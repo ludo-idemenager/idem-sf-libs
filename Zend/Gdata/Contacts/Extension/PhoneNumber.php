@@ -25,6 +25,7 @@ class Zend_Gdata_Contacts_Extension_PhoneNumber extends Zend_Gdata_Contacts_Exte
 	
 	protected $_rel = null;
 	protected $_isprimary = false;
+    protected $_label = null;
 	
 	public function __construct($value = null, $rel = null) {
 		parent::__construct($value);
@@ -34,11 +35,17 @@ class Zend_Gdata_Contacts_Extension_PhoneNumber extends Zend_Gdata_Contacts_Exte
 	public function setPrimary($primary) {
 		$this->_isprimary = $primary;
 	}
+
+    public function setLabel($label) {
+        $this->_label = $label;
+    }
 	
 	public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null) {
 		$element = parent::getDOM($doc, $majorVersion, $minorVersion);
 		if ($this->_rel !== null) 
 			$element->setAttribute('rel', $this->lookupNamespace('gd').'#'.$this->_rel);
+        if ($this->_label !== null)
+            $element->setAttribute('label', $this->_label);
 		$element->setAttribute("primary", $this->_isprimary ? "true" : "false");
 		return $element;
 	}
