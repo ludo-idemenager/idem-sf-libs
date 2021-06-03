@@ -8,10 +8,5 @@
         }
     ],
     "description": "Contains the backend libs to be installed in the /lib folder",
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-0": {
-            "Zend_": "./"
-        }
-    }
+    "minimum-stability": "dev"
 }
